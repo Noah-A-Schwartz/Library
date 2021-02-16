@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Library</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button class="add-book-btn">Add New Book</button>
+    <h1>My Library</h1>
+    <table>
+        <tr>
+            <th>Book</th>
+            <th>Author</th>
+            <th>Pages</th>
+            <th>Completed?</th>
+        </tr>
+    </table>
+</body>
+
+<div class = "books"></div>
+ 
+  <div class = "form-popup" id = "myForm">
+    <form action="#" name="form-container">
+        <h1>Book</h1>
+
+        <label>Book Title</label>
+        <input type="text" placeholder="Enter Book Title" name = "title">
+        
+        <label>Book Author</label>
+        <input type="text" placeholder="Enter Book Author" name = "author">
+
+        <label>Number of Pages</label>
+        <input type="text" placeholder="Enter Number of Pages" name = "pages">
+
+        <label id="checkboxlabel">Not Completed</label>
+        <br>
+        <br>
+        <label class="switch">
+            <input name ="completed" type="checkbox">
+            <span class = "slider round"></span>
+        </label>
+    
+        <button type = "button" class = "btn-submit" onclick="addBookToLibrary()">Add Book</button>
+        <button type = "button" class = "btn-cancel" onclick ="closeForm()">Cancel</button>
+    </form>
+</div>
+
+<script src="script.js"></script>
+</html>
