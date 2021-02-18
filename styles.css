@@ -7,12 +7,25 @@ body {
     align-self: center;
     flex-flow: column;
     padding: 50px;
-    background-color: #66549D;
+    background-color: #ffffff;
 }
 
-table, th, td {
+table, th, td{
     border: 1px solid black;
-    padding: 5px;
+    padding: 10px;
+    margin: 5px;
+  }
+
+th{
+  text-decoration: underline;
+  color:darkblue;
+}
+
+  .remove-button{
+    color: red;
+  }
+  .button-cell{
+    border: none;
   }
 
 
