@@ -1,7 +1,7 @@
 let myLibrary = [];
 let numOfBooks = 1;
 let table = document.getElementsByTagName("table")[0];
-newBookBtn = document.getElementsByClassName("add-book-btn")[0];
+let newBookBtn = document.getElementsByClassName("add-book-btn")[0];
 newBookBtn.addEventListener('click', openForm);
 let form = document.getElementsByTagName("form")[0];
 let completed =form.elements["completed"];
@@ -58,7 +58,7 @@ function addRemoveListener(btn){
 
 
 function removeBook(){
-    table.deleteRow(this.value);
+    table.deleteRow(this.parentElement.parentElement.rowIndex);
     myLibrary.splice(myLibrary[this.value-1, 1]);
     numOfBooks--;
 }
