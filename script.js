@@ -1,5 +1,5 @@
 let myLibrary = [];
-let numOfBooks = 1;
+let numOfBooks = 0;
 let table = document.getElementsByTagName("table")[0];
 let newBookBtn = document.getElementsByClassName("add-book-btn")[0];
 newBookBtn.addEventListener('click', openForm);
@@ -20,28 +20,27 @@ function Book(author, title, pages, completed, numOfBooks){
 }
 
 function addBookToLibrary(){
-    let bookNumber = numOfBooks;
+    numOfBooks++;
     let title = form.elements["title"].value;
     let author = form.elements["author"].value;
     let pages = form.elements["pages"].value;
     let completed =form.elements["completed"].checked == true ? "green" : "red";
-    myLibrary.push(new Book(author, title, pages, completed, bookNumber));
-    let row = table.insertRow(bookNumber);
+    let row = table.insertRow(numOfBooks);
     let removeButton = document.createElement("button");
     removeButton.className = "remove-button"
-    removeButton.value = bookNumber;
     removeButton.innerText = "X";
     addRemoveListener(removeButton);
     row.insertCell(0).textContent = title;
     row.insertCell(1).textContent = author;
     row.insertCell(2).textContent = pages;
     row.insertCell(3).style.background = completed
+    let bookNumber = row.rowIndex;
+    myLibrary.push(new Book(author, title, pages, completed, bookNumber));
     row.lastChild.value = bookNumber;
     row.lastChild.addEventListener("click", changeCompeletedState);
     row.insertCell(4).appendChild(removeButton);
     row.lastChild.className = "button-cell";
     
-    numOfBooks++;
     closeForm();
 }
 
@@ -59,19 +58,20 @@ function addRemoveListener(btn){
 
 function removeBook(){
     table.deleteRow(this.parentElement.parentElement.rowIndex);
-    myLibrary.splice(myLibrary[this.value-1, 1]);
+    myLibrary.splice(this.parentElement.parentElement.rowIndex -1, 1);
     numOfBooks--;
 }
 
 function changeCompeletedState(){
-    if(myLibrary[this.value-1].completed == "green"){
+    if(myLibrary[this.parentElement.rowIndex-1].completed == "green"){
         this.style.background = "red";
-        myLibrary[this.value-1].completed = "red";
+        myLibrary[this.parentElement.rowIndex-1].completed = "red";
     }
     else{
         this.style.background = "green";
-        myLibrary[this.value-1].completed = "green";
+        myLibrary[this.parentElement.rowIndex-1].completed = "green";
     }
+    
 }
 
 
