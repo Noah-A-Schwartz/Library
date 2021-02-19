@@ -26,6 +26,7 @@ function updateLibrary() {
     let author = form.elements["author"].value;
     let pages = form.elements["pages"].value;
     let completed = form.elements["completed"].checked == true ? "green" : "red";
+    //adding new book
     if (submitBtn.innerText != "Update") {
         numOfBooks++;
         let row = table.insertRow(numOfBooks);
@@ -49,6 +50,7 @@ function updateLibrary() {
         buttonCell.appendChild(removeButton);
         buttonCell.appendChild(editButton);
     }
+    //updating book
     else {
         myLibrary[currentBookIndex - 1].title = title;
         myLibrary[currentBookIndex - 1].author = author;
