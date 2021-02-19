@@ -7,12 +7,13 @@
 <body>
     <button class="add-book-btn">Add New Book</button>
     <h1>My Library</h1>
-    <table>
+    <table id = "library-table">
         <tr>
             <th>Book</th>
             <th>Author</th>
             <th>Pages</th>
             <th>Completed?</th>
+            <th></th>
         </tr>
     </table>
 </body>
@@ -21,7 +22,7 @@
  
   <div class = "form-popup" id = "myForm">
     <form action="#" name="form-container">
-        <h1>Book</h1>
+        <h1>New Book</h1>
 
         <label>Book Title</label>
         <input type="text" placeholder="Enter Book Title" name = "title">
@@ -40,7 +41,7 @@
             <span class = "slider round"></span>
         </label>
     
-        <button type = "button" class = "btn-submit" onclick="addBookToLibrary()">Add Book</button>
+        <button id = 'form-submit-btn' type = "button" class = "btn-submit" onclick="updateLibrary()">Add Book</button>
         <button type = "button" class = "btn-cancel" onclick ="closeForm()">Cancel</button>
     </form>
 </div>
