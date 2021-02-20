@@ -1,50 +1,54 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Library</title>
-  <link rel="stylesheet" href="styles.css">
+    <title>Library</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <button class="add-book-btn">Add New Book</button>
-    <h1>My Library</h1>
-    <table id = "library-table">
-        <tr>
-            <th>Book</th>
-            <th>Author</th>
-            <th>Pages</th>
-            <th>Completed?</th>
-            <th></th>
-        </tr>
-    </table>
+    <div class='main-area'>
+        <button class="add-book-btn">Add New Book</button>
+        <h1>My Library</h1>
+        <table id="library-table">
+            <tr>
+                <th>Book</th>
+                <th>Author</th>
+                <th>Pages</th>
+                <th>Completed?</th>
+                <th></th>
+            </tr>
+        </table>
+    </div>
 </body>
 
-<div class = "books"></div>
- 
-  <div class = "form-popup" id = "myForm">
+
+<div class="form-popup" id="myForm">
     <form action="#" name="form-container">
         <h1>New Book</h1>
 
         <label>Book Title</label>
-        <input type="text" placeholder="Enter Book Title" name = "title">
-        
+        <input type="text" placeholder="Enter Book Title" name="title">
+
         <label>Book Author</label>
-        <input type="text" placeholder="Enter Book Author" name = "author">
+        <input type="text" placeholder="Enter Book Author" name="author">
 
         <label>Number of Pages</label>
-        <input type="text" placeholder="Enter Number of Pages" name = "pages">
+        <input type="text" placeholder="Enter Number of Pages" name="pages">
 
         <label id="checkboxlabel">Not Completed</label>
         <br>
         <br>
         <label class="switch">
-            <input name ="completed" type="checkbox">
-            <span class = "slider round"></span>
+            <input name="completed" type="checkbox">
+            <span class="slider round"></span>
         </label>
-    
-        <button id = 'form-submit-btn' type = "button" class = "btn-submit" onclick="updateLibrary()">Add Book</button>
-        <button type = "button" class = "btn-cancel" onclick ="closeForm()">Cancel</button>
+
+        <button id='form-submit-btn' type="button" class="btn-submit" onclick="updateLibrary()">Add Book</button>
+        <button type="button" class="btn-cancel" onclick="closeForm()">Cancel</button>
     </form>
 </div>
 
 <script src="script.js"></script>
+
 </html>

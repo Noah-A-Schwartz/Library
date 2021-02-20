@@ -6,8 +6,8 @@ let newBookBtn = document.getElementsByClassName("add-book-btn")[0];
 let submitBtn = document.getElementById('form-submit-btn');
 newBookBtn.addEventListener('click', openForm);
 let form = document.getElementsByTagName("form")[0];
-let completed = form.elements["completed"];
-completed.addEventListener('click', checkboxLabel);
+let completedLabel = form.elements["completed"];
+completedLabel.addEventListener('click', checkboxLabel);
 
 
 
@@ -25,7 +25,7 @@ function updateLibrary() {
     let title = form.elements["title"].value;
     let author = form.elements["author"].value;
     let pages = form.elements["pages"].value;
-    let completed = form.elements["completed"].checked == true ? "green" : "red";
+    let completed = form.elements["completed"].checked == true ? "✔" : "❌";
     //adding new book
     if (submitBtn.innerText != "Update") {
         numOfBooks++;
@@ -41,7 +41,7 @@ function updateLibrary() {
         row.insertCell(0).textContent = title;
         row.insertCell(1).textContent = author;
         row.insertCell(2).textContent = pages;
-        row.insertCell(3).style.background = completed
+        row.insertCell(3).innerText = completed
         let bookNumber = row.rowIndex;
         myLibrary.push(new Book(author, title, pages, completed, bookNumber));
         row.lastChild.value = bookNumber;
@@ -59,7 +59,7 @@ function updateLibrary() {
         table.rows[currentBookIndex].cells[0].innerText = title;
         table.rows[currentBookIndex].cells[1].innerText = author;
         table.rows[currentBookIndex].cells[2].innerText = pages;
-        table.rows[currentBookIndex].cells[3].style.background = completed;
+        table.rows[currentBookIndex].cells[3].innerText = completed;
     }
     closeForm();
 }
@@ -69,6 +69,7 @@ function updateLibrary() {
 function openForm() {
     document.getElementById("myForm").style.display = "flex";
     newBookBtn.style.display = "none";
+    document.getElementsByClassName('main-area')[0].style.opacity = "0.5";
 }
 
 function addRemoveListener(btn) {
@@ -83,13 +84,13 @@ function removeBook() {
 }
 
 function changeCompeletedState() {
-    if (myLibrary[this.parentElement.rowIndex - 1].completed == "green") {
-        this.style.background = "red";
-        myLibrary[this.parentElement.rowIndex - 1].completed = "red";
+    if (myLibrary[this.parentElement.rowIndex - 1].completed == "✔") {
+        this.innerText = "❌";
+        myLibrary[this.parentElement.rowIndex - 1].completed = "❌";
     }
     else {
-        this.style.background = "green";
-        myLibrary[this.parentElement.rowIndex - 1].completed = "green";
+        this.innerText = "✔";
+        myLibrary[this.parentElement.rowIndex - 1].completed = "✔";
     }
 
 }
@@ -106,32 +107,39 @@ function fillForm(index) {
     for (i = 0; i < textFields.length; i++) {
         if (textFields[i].type == "text")
             textFields[i].value = table.rows[index].cells[i].innerText;
+        else if (textFields[i].type == "checkbox") {
+            if (table.rows[index].cells[i].innerText == "✔")
+                form.elements["completed"].checked = true;
+            else form.elements["completed"].checked = false;
+        }
+
     }
 }
 
 
-function closeForm() {
-    if (submitBtn.innerText = "Update")
-        submitBtn.innerText = "Add Book";
-    clearForm();
-    document.getElementById("myForm").style.display = "none";
-    newBookBtn.style.display = "flex";
-}
-
-function checkboxLabel() {
-    if (completed.checked == true) {
-        document.getElementById("checkboxlabel").textContent = "Completed";
+    function closeForm() {
+        if (submitBtn.innerText = "Update")
+            submitBtn.innerText = "Add Book";
+        clearForm();
+        document.getElementById("myForm").style.display = "none";
+        newBookBtn.style.display = "flex";
+        document.getElementsByClassName('main-area')[0].style.opacity = "1";
     }
-    else document.getElementById("checkboxlabel").textContent = "Not Completed";
-}
 
-function clearForm() {
-    let textFields = document.getElementsByTagName("input");
-    for (i = 0; i < textFields.length; i++) {
-        if (textFields[i].type == "text")
-            textFields[i].value = "";
+    function checkboxLabel() {
+        if (completedLabel.checked == true) {
+            document.getElementById("checkboxlabel").textContent = "Completed";
+        }
+        else document.getElementById("checkboxlabel").textContent = "Not Completed";
     }
-}
+
+    function clearForm() {
+        let textFields = document.getElementsByTagName("input");
+        for (i = 0; i < textFields.length; i++) {
+            if (textFields[i].type == "text")
+                textFields[i].value = "";
+        }
+    }
 
 
 
