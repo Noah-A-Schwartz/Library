@@ -65,11 +65,33 @@ function updateLibrary() {
 }
 
 
+function disableEditButtons(){
+    let removeButtons = document.getElementsByClassName("remove-button");
+    let editButtons = document.getElementsByClassName("edit-button");
+    for(i = 0; i < removeButtons.length; i++){
+        removeButtons[i].disabled = true;
+    } 
+    for(i = 0; i < editButtons.length; i++){
+       editButtons[i].disabled = true;
+    } 
+}
 
+function enableEditButtons(){
+    let removeButtons = document.getElementsByClassName("remove-button");
+    let editButtons = document.getElementsByClassName("edit-button");
+    for(i = 0; i < removeButtons.length; i++){
+        removeButtons[i].disabled = false;
+    } 
+    for(i = 0; i < editButtons.length; i++){
+       editButtons[i].disabled = false;
+    } 
+}
 function openForm() {
     document.getElementById("myForm").style.display = "flex";
     newBookBtn.style.display = "none";
     document.getElementsByClassName('main-area')[0].style.opacity = "0.5";
+    if(myLibrary.length != 0)
+        disableEditButtons();
 }
 
 function addRemoveListener(btn) {
@@ -124,6 +146,8 @@ function fillForm(index) {
         document.getElementById("myForm").style.display = "none";
         newBookBtn.style.display = "flex";
         document.getElementsByClassName('main-area')[0].style.opacity = "1";
+        if(myLibrary.length != 0)
+            enableEditButtons()
     }
 
     function checkboxLabel() {
