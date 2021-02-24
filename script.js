@@ -32,6 +32,7 @@ function updateLibrary() {
         let row = table.insertRow(numOfBooks);
         let removeButton = document.createElement("button");
         let editButton = document.createElement("button");
+        row.className = "book-row"
         removeButton.className = "remove-button";
         removeButton.innerText = "X";
         editButton.className = "edit-button";

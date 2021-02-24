@@ -44,9 +44,15 @@ th{
   color:darkblue;
 }
 
+.book-row:hover{
+  background-color: aqua;
+  border-radius: 50%;
+}
+
 tr{
-  margin-top: 5px;
-  border: 1px solid #ddd;
+  margin-top: 50px;
+  border: 15px solid #ddd;
+  
 }
 
 .button-cell{
